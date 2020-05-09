@@ -51,6 +51,7 @@
         <scm.url>https://github.com/rupert-madden-abbott/${scm.repository}</scm.url>
         <maven-gpg-plugin.version>1.5</maven-gpg-plugin.version>
         <maven.version>[3.2.1,)</maven.version>
+        <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
     </properties>
 
     <profiles>
@@ -58,6 +59,17 @@
             <id>deploy</id>
             <build>
                 <plugins>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>${nexus-staging-maven-plugin.version}</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverid>ossrh</serverid>
+                            <nexusurl>https://oss.sonatype.org/</nexusurl>
+                            <autoreleaseafterclose>true</autoreleaseafterclose>
+                        </configuration>
+                    </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
