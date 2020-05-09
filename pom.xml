@@ -50,6 +50,7 @@
         <scm.repository>parent</scm.repository>
         <scm.url>https://github.com/rupert-madden-abbott/${scm.repository}</scm.url>
         <maven-gpg-plugin.version>1.5</maven-gpg-plugin.version>
+        <maven.version>[3.2.1,)</maven.version>
     </properties>
 
     <profiles>
@@ -95,10 +96,54 @@
                             </execution>
                         </executions>
                     </plugin>
+                    <plugin>
+                        <artifactId>maven-enforcer-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>enforce-versions</id>
+                                <goals>
+                                    <goal>enforce</goal>
+                                </goals>
+                                <configuration>
+                                    <rules>
+                                        <!--
+                                          Ensuring that all plugins have versions specified,
+                                          guarantees that future builds are repeatable
+                                        -->
+                                        <requirePluginVersions>
+                                            <banSnapshots>false</banSnapshots>
+                                        </requirePluginVersions>
+                                        <!--
+                                          Prevents a project from being deployed as a release i.e.
+                                          with a non-SNAPSHOT version number, unless all of its
+                                          dependencies are also all not SNAPSHOTS as well. Again this
+                                          ensures that production builds are repeatable.
+                                        -->
+                                        <requireReleaseDeps>
+                                            <onlyWhenRelease>true</onlyWhenRelease>
+                                        </requireReleaseDeps>
+                                        <!--
+                                          Require projects to use the specified version of Maven.
+                                        -->
+                                        <requireMavenVersion>
+                                            <version>${maven.version}</version>
+                                        </requireMavenVersion>
+                                        <!--
+                                          Require projects to use the specified version of Java. This prevents projects
+                                          from building with a later version of Java, when an earlier one is intended
+                                          for use at runtime. This is needed because otherwise there is no warning, if
+                                          you use classes that are only available in the newer version.
+                                        -->
+                                        <requireJavaVersion>
+                                            <version>${java.version}</version>
+                                        </requireJavaVersion>
+                                    </rules>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
                 </plugins>
             </build>
         </profile>
     </profiles>
-
-
 </project>
