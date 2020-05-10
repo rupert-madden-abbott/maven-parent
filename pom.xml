@@ -52,8 +52,26 @@
         <scm.url>https://github.com/rupert-madden-abbott/${scm.repository}</scm.url>
         <maven-gpg-plugin.version>1.5</maven-gpg-plugin.version>
         <maven.version>[3.6.1,)</maven.version>
+        <spring-boot.version>2.2.7.RELEASE</spring-boot.version>
         <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${spring-boot.version}</version>
+                <scope>test</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.junit.vintage</groupId>
+                        <artifactId>junit-vintage-engine</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <profiles>
         <profile>
