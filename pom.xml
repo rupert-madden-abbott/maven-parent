@@ -14,7 +14,7 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <description>Parent for all open source projects.</description>
-    <url>${scm.url}</url>
+    <url child.project.url.inherit.append.path="false">${scm.url}</url>
 
     <licenses>
         <license>
@@ -31,7 +31,7 @@
         </developer>
     </developers>
 
-    <scm>
+    <scm child.scm.url.inherit.append.path="false">
         <url>${scm.url}</url>
     </scm>
 
@@ -50,7 +50,7 @@
         <scm.repository>parent</scm.repository>
         <scm.url>https://github.com/rupert-madden-abbott/${scm.repository}</scm.url>
         <maven-gpg-plugin.version>1.5</maven-gpg-plugin.version>
-        <maven.version>[3.2.1,)</maven.version>
+        <maven.version>[3.6.1,)</maven.version>
         <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
     </properties>
 
