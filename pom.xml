@@ -54,6 +54,8 @@
         <maven.version>[3.6.1,)</maven.version>
         <spring-boot.version>2.3.0.RELEASE</spring-boot.version>
         <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
+        <!-- No longer Spring Boot managed since 2.3.0.RELEASE -->
+        <maven-site-plugin.version>3.8.2</maven-site-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -72,6 +74,17 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>${maven-site-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
     <profiles>
         <profile>
