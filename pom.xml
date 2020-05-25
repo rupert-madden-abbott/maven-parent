@@ -12,7 +12,7 @@
 
     <groupId>com.madden-abbott</groupId>
     <artifactId>parent</artifactId>
-    <version>1.1.0-SNAPSHOT</version>
+    <version>1.1.0</version>
     <packaging>pom</packaging>
     <description>Parent for all open source projects.</description>
     <url>${scm.url}</url>
