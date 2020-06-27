@@ -12,7 +12,7 @@
 
     <groupId>com.madden-abbott</groupId>
     <artifactId>parent</artifactId>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
     <packaging>pom</packaging>
     <description>Parent for all open source projects.</description>
     <url>${scm.url}</url>
@@ -24,6 +24,9 @@
         </license>
     </licenses>
 
+    <organization/>
+    <issueManagement/>
+
     <developers>
         <developer>
             <name>Rupert Madden-Abbott</name>
@@ -34,6 +37,8 @@
 
     <scm child.scm.url.inherit.append.path="false">
         <url>${scm.url}</url>
+        <connection/>
+        <developerConnection/>
     </scm>
 
     <distributionManagement>
